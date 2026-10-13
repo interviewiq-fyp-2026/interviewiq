@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+.env
+node_modules/
+data/raw/
+*.wav
+*.webm
+.DS_Store
+*.mp4
+*.mp3
