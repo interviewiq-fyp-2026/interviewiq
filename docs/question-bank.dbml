@@ -1,0 +1,62 @@
+Table domain {
+  id integer [pk, increment]
+  name varchar [not null, unique]
+  description text
+  status varchar [not null, default: 'draft', note: 'draft or active']
+  created_at timestamp [default: `now()`]
+}
+
+Table topic {
+  id integer [pk, increment]
+  domain_id integer [not null, ref: > domain.id]
+  name varchar [not null]
+  indexes {
+    (domain_id, name) [unique]
+  }
+}
+
+Table source_video {
+  id integer [pk, increment]
+  url varchar [not null, unique]
+  platform varchar [not null]
+  creator varchar
+  title varchar
+  language varchar
+  duration_min numeric
+  audio_score integer
+  fit_score integer
+  usage_note text
+  status varchar [not null, note: 'accepted, rejected or maybe']
+  checked_by varchar
+  checked_at date
+}
+
+Table question {
+  id integer [pk, increment]
+  domain_id integer [not null, ref: > domain.id]
+  topic_id integer [ref: > topic.id]
+  source_video_id integer [ref: > source_video.id]
+  question_text text [not null]
+  difficulty integer [not null, note: '1 easy, 2 medium, 3 hard']
+  expected_points text
+  is_active boolean [default: true]
+  created_at timestamp [default: `now()`]
+}
+
+Table rubric_criterion {
+  id integer [pk, increment]
+  domain_id integer [not null, ref: > domain.id]
+  name varchar [not null]
+  description text
+  weight numeric [default: 1]
+}
+
+Table rubric_band {
+  id integer [pk, increment]
+  criterion_id integer [not null, ref: > rubric_criterion.id]
+  score integer [not null, note: '1 to 5']
+  descriptor text [not null]
+  indexes {
+    (criterion_id, score) [unique]
+  }
+}
