@@ -1,7 +1,19 @@
-
 # InterviewIQ
 
 InterviewIQ is an AI-powered mock interview and performance assessment system.
+
+Final year project, PUCIT, University of the Punjab.
+
+- Team: Kinza Abrar (lead), Arooj Qayyum, Zunaira Ghulam Nabi
+- Supervisor: Sir Imran Bin Naseer
+
+## Folders
+
+- backend - API and database
+- frontend - web app and camera panel
+- agents - AI agents and orchestration
+- data - dataset pipeline and question bank
+- docs - requirements and design documents
 
 ## Prerequisites
 
@@ -26,6 +38,8 @@ In Windows PowerShell, run the following command from the project root folder to
 ```powershell
 Copy-Item .env.example .env
 ```
+
+In Git Bash, macOS or Linux, use: `cp .env.example .env`
 
 If a `.env` file already exists, do not overwrite it. Check its configuration instead.
 
@@ -88,3 +102,12 @@ docker compose down
 - PostgreSQL
 - Docker
 - Docker Compose
+
+## How we work
+
+- Never push directly to main or dev.
+- One branch per ticket: feature/<ticket-id>-<short-name>
+- Open a pull request into dev; a teammate must approve before merging.
+- Commit messages: feat, fix, test or docs, a colon, then the ticket ID, for example
+  feat: T07 add health endpoint
+- Never commit passwords, API keys, videos or audio.
